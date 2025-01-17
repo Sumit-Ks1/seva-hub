@@ -104,8 +104,8 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: false,
-    sameSite: "Lax",
+    secure: true,// need to be false for localhost
+    sameSite: "None",// need to be Lax for localhost
   };
 
   return res
