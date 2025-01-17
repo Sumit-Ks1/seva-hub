@@ -8,11 +8,13 @@ const UpcomingEvents = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState([{}]);
+  const API_URL = import.meta.env.VITE_API_URL || '/api';
   useEffect(() => {
+
     // Change to user controller new
     return () => {
       axios
-        .get("http://localhost:8000/api/v1/events/getUpcomingEvents",{
+        .get(`${API_URL}/v1/events/getUpcomingEvents`,{
           headers: { "Content-Type": "application/json" },
           withCredentials: true,})
         .then((response) => {
@@ -40,7 +42,6 @@ const UpcomingEvents = () => {
   // };
 
   const participateEvent = (eventId) => {
-    console.log(eventId)
     // upcomin_Voluteered and upcoming_Participated track will be made in User model i.e updation
     // const axiosInstance = axios.create({
     //   baseURL: "http://localhost:8000/api/v1/",
