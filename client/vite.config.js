@@ -6,8 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api/v1': {
-        target: 'http://localhost:8000',
+      '/api': {
+        target: 'https://seva-hub-nkpb-api-dexter07.vercel.app',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       }
