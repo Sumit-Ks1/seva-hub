@@ -4,16 +4,15 @@ import cookieParser from "cookie-parser"
 
 const app = express()
 
-const corsOptions = {
-    origin: ['https://seva-hub.vercel.app'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-    credentials: true,
-    maxAge: 86400 // Cache preflight request for 24 hours
-};
+
 
 // Apply CORS middleware
-app.use(cors(corsOptions));
+app.use(cors({
+    origin: 'https://seva-hub.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
  
 // Additional headers middleware
 app.use((req, res, next) => {
@@ -24,7 +23,8 @@ app.use((req, res, next) => {
     
     // Handle preflight requests
     if (req.method === 'OPTIONS') {
-        return res.sendStatus(200);
+        res.status(200).end();
+        return;
     }
     next();
 });
