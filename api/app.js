@@ -14,7 +14,7 @@ const corsOptions = {
 
 // Apply CORS middleware
 app.use(cors(corsOptions));
-
+ 
 // Additional headers middleware
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'https://seva-hub.vercel.app');
